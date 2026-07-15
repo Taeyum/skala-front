@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>회원가입</title>
+    </head>
+    <body>
+        <div class="container">
+
+    <h2>👤 회원가입</h2>
+        <p>SKALA-FRONT 회원가입을 환영합니다.</p>
+        <hr>
+
+        <!--
+            Q. method가 post라면 버튼 눌렀을 때 데이터들을 보내기만 하는거고,
+               get은 그냥 버튼 누르면 그 html을 가져오라는거야?
+            A. 아님. GET도 POST도 둘 다 "입력값을 서버로 전송 + 결과 페이지를 받아옴"은 똑같이 함.
+               차이는 "입력값을 어디에 담아서 보내느냐"임.
+               - GET: 입력값을 URL 뒤에 텍스트로 그대로 붙여서 보냄
+                 (예: signUpResult.html?userId=abc&userPw=1234...)
+                 → 주소창/브라우저 히스토리/서버 로그에 값이 그대로 노출됨.
+                 → 비밀번호 같은 민감 정보엔 절대 쓰면 안됨.
+               - POST: 입력값이 URL에 안 보이고 HTTP 요청의 본문(body)에 숨겨져서 전송됨
+                 → 주소창에 노출 안됨. 로그인/회원가입처럼 민감 정보 다룰 땐 POST가 정석.
+               지금 이 폼은 비밀번호를 받으니까 실무라면 method="post"로 바꾸는 게 맞음
+               (지금은 연습용이라 get이어도 동작엔 문제없음).
+        -->
+        <form action="signUpResult.html" method="get">
+
+            <!--
+                fieldset: 관련된 입력 요소들을 하나의 그룹으로 묶는 태그. 브라우저 기본 스타일로 테두리 박스 생김
+                legend: 그 그룹의 제목표
+            -->
+            <fieldset>
+                <legend>계정 정보</legend>
+                <p>
+                    <!--
+                        label의 for="userId"가 input의 id="userId"와 연결됨
+                        → 라벨 텍스트를 클릭해도 input에 포커스 이동 (접근성 + 사용성 목적) [이건 처음 안 내용]
+                    -->
+                    <label for="userId">아이디: </label>
+                    <!--
+                        minlength/maxlength: 입력 가능한 최소/최대 글자 수 제한
+                        required: 필수 입력 - 안 채우면 제출이 자동으로 막힘 (브라우저 기본 검증 기능)
+                        placeholder: 입력 전 흐릿하게 보이는 안내 텍스트, 실제 입력값 아님
+                    -->
+                    <input type="text" id="userId" name="userId" minlength="4" maxlength="15" required placeholder="4~15자 영문/숫자를 입력해주세요." size="30">
+                    <small>(필수)</small>
+                </p>
+                <p>
+                    <label for="userPw">비밀번호: </label>
+                    <!-- type="password": 입력한 글자가 화면에 점(•)으로 가려져서 보임 -->
+                    <input type="password" id="userPw" name="userPw" minlength="8" required placeholder="8자 이상 입력해주세요.">
+                    <small>(필수)</small>
+                </p>
+                <!--
+                    이메일 아이디 부분만 직접 입력받고, @ 뒤 도메인은 select(드롭다운)로 고르게 해서
+                    naver.com, gmail.com 등을 빠르게 선택할 수 있게 만든 구조
+                -->
+                <p>
+                    <label for="userEmail">이메일: </label>
+                    <input type="text" id="userEmail" name="userEmail" placeholder="example" size="15">
+                    @
+                    <select name="email">
+                        <option value="direct">직접 입력</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="daum.net">daum.net</option>
+                    </select>
+                </p>
+            </fieldset>
+
+            <br>
+
+            <fieldset>
+                <legend>개인 프로필 정보</legend>
+                <p>
+                    <label for="userName">이름: </label>
+                    <input type="text" id="userName" name="userName" required>
+                </p>
+                <p>
+                    <label for="userBirth">생년월일: </label>
+                    <!-- type="date": 브라우저가 자동으로 달력 선택 UI를 제공해줌 -->
+                    <input type="date" id="userBirth" name="userBirth">
+                </p>
+                <!--
+                    type="radio": 여러 옵션 중 "하나만" 선택 가능.
+                    같은 name="gender"를 가진 것들끼리 그룹으로 묶여서, 하나 고르면 나머지는 자동 해제됨
+                    checked: 기본값으로 미리 선택되어 있는 옵션 지정 (여기선 "남성"이 기본)
+                    label로 통째로 감싼 이유: 라디오 버튼뿐 아니라 옆 텍스트("남성")를 클릭해도 선택되게 하기 위함
+                -->
+                <p>
+                    성별: 
+                    <label><input type="radio" name="gender" value="male" checked> 남성</label>
+                    <label><input type="radio" name="gender" value="female"> 여성</label>
+                    <label><input type="radio" name="gender" value="none"> 선택안함</label>
+                </p>
+                <!--
+                    type="checkbox": radio와 달리 "여러 개 동시 선택 가능".
+                    name은 같아도 checked 여부가 각각 독립적으로 작동함
+                -->
+                <p>
+                    관심 분야 (중복 선택 가능): <br>
+                    <label><input type="checkbox" name="interest" value="frontend"> 웹 프론트엔드 (Vue.js/HTML)</label><br>
+                    <label><input type="checkbox" name="interest" value="uiux"> UI/UX 디자인 표준</label><br>
+                    <label><input type="checkbox" name="interest" value="backend"> 백엔드 & 데이터베이스</label><br>
+                    <label><input type="checkbox" name="interest" value="devops"> 클라우드 & 인프라</label>
+                </p>
+                
+                <!--
+                    disabled: 이 옵션은 선택 자체가 안 되게 비활성화 (안내 문구 용도)
+                    selected: 기본으로 보이는 옵션 (근데 disabled라 실제로 다시 고를 순 없음
+                              → "선택 유도용 안내 문구" 트릭)
+                -->
+                <p>
+                    <label for="joinPath">가입 경로: </label>
+                    <select id="joinPath" name="joinPath">
+                        <option value="" disabled selected>-- 선택해 주세요 --</option>
+                        <option value="search">인터넷 검색</option>
+                        <option value="friend">지인 추천</option>
+                        <option value="sns">SNS 광고</option>
+                        <option value="etc">기타</option>
+                    </select>
+                </p>
+                <!--
+                    Q. 가입경로에서 "기타" 선택했을 때만 입력할 수 있는 박스를 만들고 싶은데?
+                    A. "선택에 따라 다른 요소를 보여주기"는 HTML만으로는 불가능하고 JavaScript가 필요함.
+                       지금은 JS 없이 할 수 있는 방법으로, 입력창을 항상 보이게 두고
+                       "기타"를 선택 안 했으면 그냥 비워두는 방식으로 처리함.
+                       (JS를 배우면 onchange 이벤트로 "기타" 선택 시에만 나타나게 만들 수 있음)
+
+                    Q. placeholder 글씨가 잘리는 문제는?
+                    A. placeholder 텍스트가 input 기본 너비보다 길어서 잘리는 것.
+                       CSS 없이 해결하려면 size 속성으로 입력창 너비를 늘리면 됨
+                       (size는 대략 "몇 글자 정도 보이는 너비로 할지"를 지정하는 HTML 속성).
+                -->
+                <p>
+                    <label for="joinPathEtc">기타 내용 (선택 시에만 작성): </label>
+                    <input type="text" id="joinPathEtc" name="joinPathEtc" placeholder="기타를 선택하셨다면 입력해주세요" size="120">
+                </p>
+            </fieldset>
+
+            <br>
+
+            <fieldset>
+                <legend>자기소개</legend>
+                <!-- textarea: 여러 줄 입력이 가능한 텍스트 박스. rows=세로 줄 수, cols=가로 폭(글자 수 기준) -->
+                <p>
+                    <label for="intro">나를 표현하는 한 줄 소개 또는 가입 인사:</label><br>
+                    <textarea id="intro" name="intro" rows="5" cols="50" placeholder="여기에 내용을 입력하세요 (최대 200자)"></textarea>
+                </p>
+            </fieldset>
+
+            <br>
+
+            <!--
+                Q. 버튼에 class가 나뉘어져 있는데, 이건 나중에 CSS에서 쓰려고 나눈거야?
+                   class 없어도 동작은 하나?
+                A. 맞음. class는 나중에 CSS(또는 JS)에서 "이 요소를 골라서 스타일 주거나 조작하려고"
+                   미리 이름표를 붙여두는 것. 지금은 CSS를 안 배운 상태라 class가 화면에 아무 영향 없음.
+                   class를 빼도 기능은 완전히 똑같이 동작함:
+                   - type="submit" 버튼은 여전히 폼을 action에 지정된 곳으로 제출함
+                   - type="reset" 버튼은 여전히 입력했던 내용을 전부 초기화함
+                   즉 실제 기능을 정하는 건 type이고, class는 순전히 "나중에 스타일 구분용" 이름표일 뿐임.
+            -->
+            <input type="submit" class="btn-submit" value="동의하고 회원가입">
+            <input type="reset" class="btn-reset" value="다시 작성">
+
+        </form>
+
+        </div>
+    </body>
+</html>
