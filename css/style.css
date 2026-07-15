@@ -1,3 +1,6 @@
+/* 구글 폰트 서버에서 Poor Story(손글씨 느낌 폰트)를 불러옴. @import는 파일 맨 위에 있어야 적용됨. */
+@import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+
 /* =========================================
    [미션1] 전체 테마 및 텍스트 Styling
    ========================================= */
@@ -8,7 +11,7 @@
     line-height는 줄간격(font-size 배수) - 키우면 문단이 여유롭게, 줄이면 촘촘해짐.
 */
 body {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Poor Story', cursive;
     line-height: 1.7;
     color: #4a4a4a;
     background-color: #f0f9ff;
@@ -47,4 +50,72 @@ a {
 a:hover {
     color: #01579b;
     text-decoration: underline;
+}
+
+/* =========================================
+   [미션2] 박스 모델의 이해
+   ========================================= */
+
+/*
+    .container: 클래스 선택자(.클래스명)라 class="container"가 붙은 요소에만 적용됨.
+    width로 박스의 가로 폭을 제한하고, margin: 0 auto(위아래 0, 좌우 auto)를 주면
+    브라우저가 남는 좌우 공간을 똑같이 나눠 가져서 박스 자체가 화면 가운데로 이동함
+    (박스 모델을 이용한 대표적인 가운데 정렬 방법).
+    border/padding/background-color는 이 박스를 하나의 카드처럼 보이게 꾸며줌
+    (padding은 테두리 안쪽 여백, border는 테두리 선).
+*/
+.container {
+    width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border: 1px solid #b3e5fc;
+}
+
+/*
+    myTrip.html 전용: .trip-card(여행 사진+설명)와 .video-card(브이로그 영상)를
+    그룹 선택자(,)로 묶어서 같은 카드 스타일을 한 번에 적용함.
+    background-color/border로 경계를 주고, padding(안쪽 여백)과
+    margin(카드 사이 바깥 여백)을 줘서 서로 분리된 카드처럼 보이게 함.
+*/
+.trip-card,
+.video-card {
+    background-color: #f0f9ff;
+    border: 1px solid #81d4fa;
+    padding: 16px;
+    margin: 16px 0;
+    text-align: center;
+}
+
+/*
+    myClass.html 전용: 시간표 table 꾸미기.
+    table의 width로 테이블 전체 가로 폭을, th/td의 padding으로 셀 안쪽 여백을 넉넉하게 줘서
+    답답해 보이지 않게 하고, border로 각 셀의 경계를 명확히 함.
+    th는 배경색+글자색을 반전시켜 "제목 행"임을 구분되게 함.
+    tr:nth-child(even)은 짝수 번째 행에만 배경색을 줘서 줄무늬(지브라) 효과를 내고,
+    tr:hover는 마우스를 올린 행만 강조색으로 바뀌어 지금 보고 있는 줄을 찾기 쉽게 함.
+*/
+table {
+    width: 100%;
+    border: 1px solid #81d4fa;
+}
+
+th {
+    background-color: #0288d1;
+    color: #ffffff;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #e1f5fe;
+    text-align: center;
+}
+
+tr:nth-child(even) td {
+    background-color: #f0f9ff;
+}
+
+tr:hover td {
+    background-color: #b3e5fc;
 }
