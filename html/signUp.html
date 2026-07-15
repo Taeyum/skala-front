@@ -45,13 +45,13 @@
                         required: 필수 입력 - 안 채우면 제출이 자동으로 막힘 (브라우저 기본 검증 기능)
                         placeholder: 입력 전 흐릿하게 보이는 안내 텍스트, 실제 입력값 아님
                     -->
-                    <input type="text" id="userId" name="userId" minlength="4" maxlength="15" required placeholder="4~15자 영문/숫자를 입력해주세요." size="30">
+                    <input type="text" id="userId" name="userId" class="form-input" minlength="4" maxlength="15" required placeholder="4~15자 영문/숫자를 입력해주세요." size="30">
                     <small>(필수)</small>
                 </p>
                 <p>
                     <label for="userPw">비밀번호: </label>
                     <!-- type="password": 입력한 글자가 화면에 점(•)으로 가려져서 보임 -->
-                    <input type="password" id="userPw" name="userPw" minlength="8" required placeholder="8자 이상 입력해주세요.">
+                    <input type="password" id="userPw" name="userPw" class="form-input" minlength="8" required placeholder="8자 이상 입력해주세요.">
                     <small>(필수)</small>
                 </p>
                 <!--
@@ -60,7 +60,7 @@
                 -->
                 <p>
                     <label for="userEmail">이메일: </label>
-                    <input type="text" id="userEmail" name="userEmail" placeholder="example" size="15">
+                    <input type="text" id="userEmail" name="userEmail" class="form-input" placeholder="example" size="15">
                     @
                     <select name="email">
                         <option value="direct">직접 입력</option>
@@ -77,12 +77,12 @@
                 <legend>개인 프로필 정보</legend>
                 <p>
                     <label for="userName">이름: </label>
-                    <input type="text" id="userName" name="userName" required>
+                    <input type="text" id="userName" name="userName" class="form-input" required>
                 </p>
                 <p>
                     <label for="userBirth">생년월일: </label>
                     <!-- type="date": 브라우저가 자동으로 달력 선택 UI를 제공해줌 -->
-                    <input type="date" id="userBirth" name="userBirth">
+                    <input type="date" id="userBirth" name="userBirth" class="form-input">
                 </p>
                 <!--
                     type="radio": 여러 옵션 중 "하나만" 선택 가능.
@@ -137,7 +137,7 @@
                 -->
                 <p>
                     <label for="joinPathEtc">기타 내용 (선택 시에만 작성): </label>
-                    <input type="text" id="joinPathEtc" name="joinPathEtc" placeholder="기타를 선택하셨다면 입력해주세요" size="120">
+                    <input type="text" id="joinPathEtc" name="joinPathEtc" class="form-input" placeholder="기타를 선택하셨다면 입력해주세요" size="120">
                 </p>
             </fieldset>
 
