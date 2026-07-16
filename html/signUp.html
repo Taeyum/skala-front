@@ -34,7 +34,7 @@
             -->
             <fieldset>
                 <legend>계정 정보</legend>
-                <p>
+                <p class="form-row">
                     <!--
                         label의 for="userId"가 input의 id="userId"와 연결됨
                         → 라벨 텍스트를 클릭해도 input에 포커스 이동 (접근성 + 사용성 목적) [이건 처음 안 내용]
@@ -48,7 +48,7 @@
                     <input type="text" id="userId" name="userId" class="form-input" minlength="4" maxlength="15" required placeholder="4~15자 영문/숫자를 입력해주세요." size="30">
                     <small>(필수)</small>
                 </p>
-                <p>
+                <p class="form-row">
                     <label for="userPw">비밀번호: </label>
                     <!-- type="password": 입력한 글자가 화면에 점(•)으로 가려져서 보임 -->
                     <input type="password" id="userPw" name="userPw" class="form-input" minlength="8" required placeholder="8자 이상 입력해주세요.">
@@ -58,7 +58,7 @@
                     이메일 아이디 부분만 직접 입력받고, @ 뒤 도메인은 select(드롭다운)로 고르게 해서
                     naver.com, gmail.com 등을 빠르게 선택할 수 있게 만든 구조
                 -->
-                <p>
+                <p class="form-row">
                     <label for="userEmail">이메일: </label>
                     <input type="text" id="userEmail" name="userEmail" class="form-input" placeholder="example" size="15">
                     @
@@ -75,11 +75,11 @@
 
             <fieldset>
                 <legend>개인 프로필 정보</legend>
-                <p>
+                <p class="form-row">
                     <label for="userName">이름: </label>
                     <input type="text" id="userName" name="userName" class="form-input" required>
                 </p>
-                <p>
+                <p class="form-row">
                     <label for="userBirth">생년월일: </label>
                     <!-- type="date": 브라우저가 자동으로 달력 선택 UI를 제공해줌 -->
                     <input type="date" id="userBirth" name="userBirth" class="form-input">
@@ -113,7 +113,7 @@
                     selected: 기본으로 보이는 옵션 (근데 disabled라 실제로 다시 고를 순 없음
                               → "선택 유도용 안내 문구" 트릭)
                 -->
-                <p>
+                <p class="form-row">
                     <label for="joinPath">가입 경로: </label>
                     <select id="joinPath" name="joinPath">
                         <option value="" disabled selected>-- 선택해 주세요 --</option>

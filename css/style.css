@@ -2,6 +2,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
 
 /* =========================================
+   [CSS Variables] 색상 팔레트
+   ========================================= */
+
+/*
+    :root는 문서 전체(html 최상위)를 가리키는 선택자. 여기에 --변수명: 값; 형태로 커스텀 프로퍼티(CSS 변수)를
+    선언해두면, 파일 어디서든 var(--변수명)으로 꺼내 쓸 수 있음.
+    지금까지는 #0288d1, #81d4fa 같은 색상 코드가 파일 곳곳에 그대로 반복돼서, 나중에 "메인 색을 바꾸고 싶다"
+    같은 요청이 오면 하드코딩된 값을 일일이 찾아서 고쳐야 했음. 변수로 한 곳에 모아두면 여기 값 하나만
+    바꿔도 그 변수를 쓰는 모든 곳이 한 번에 바뀌고, 이름(--color-primary 등)만 봐도 "어떤 역할의 색인지"
+    바로 알 수 있어서 가독성도 좋아짐.
+*/
+:root {
+    --color-primary: #0288d1;
+    --color-primary-dark: #01579b;
+    --color-secondary: #00acc1;
+    --color-link: #039be5;
+    --color-text: #4a4a4a;
+    --color-bg: #f0f9ff;
+    --color-bg-soft: #f8fdff;
+    --color-white: #ffffff;
+    --color-border: #81d4fa;
+    --color-border-light: #e1f5fe;
+    --color-accent-light: #b3e5fc;
+}
+
+/* =========================================
    [미션1] 전체 테마 및 텍스트 Styling
    ========================================= */
 
@@ -13,8 +39,8 @@
 body {
     font-family: 'Poor Story', cursive;
     line-height: 1.7;
-    color: #4a4a4a;
-    background-color: #f0f9ff;
+    color: var(--color-text);
+    background-color: var(--color-bg);
 }
 
 /*
@@ -24,17 +50,17 @@ body {
     h1은 밑줄형(border-bottom), h2는 왼쪽 세로띠형(border-left)으로 서로 다른 느낌을 줌.
 */
 h1 {
-    color: #0288d1;
+    color: var(--color-primary);
     font-size: 2.2rem;
     padding: 14px 0;
-    border-bottom: 3px solid #0288d1;
+    border-bottom: 3px solid var(--color-primary);
 }
 
 h2 {
-    color: #00acc1;
+    color: var(--color-secondary);
     font-size: 1.6rem;
     padding: 8px 0 8px 12px;
-    border-left: 6px solid #00acc1;
+    border-left: 6px solid var(--color-secondary);
 }
 
 /*
@@ -43,12 +69,12 @@ h2 {
     "클릭 가능한 상태"를 알려줌.
 */
 a {
-    color: #039be5;
+    color: var(--color-link);
     text-decoration: none;
 }
 
 a:hover {
-    color: #01579b;
+    color: var(--color-primary-dark);
     text-decoration: underline;
 }
 
@@ -68,8 +94,8 @@ a:hover {
     width: 800px;
     margin: 0 auto;
     padding: 30px;
-    background-color: #ffffff;
-    border: 1px solid #b3e5fc;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-accent-light);
 }
 
 /*
@@ -80,8 +106,8 @@ a:hover {
 */
 .trip-card,
 .video-card {
-    background-color: #f0f9ff;
-    border: 1px solid #81d4fa;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
     padding: 16px;
     margin: 16px 0;
     text-align: center;
@@ -97,27 +123,28 @@ a:hover {
 */
 table {
     width: 100%;
-    border: 1px solid #81d4fa;
+    border: 1px solid var(--color-border);
 }
 
 th {
-    background-color: #0288d1;
-    color: #ffffff;
+    background-color: var(--color-primary);
+    color: var(--color-white);
     padding: 10px;
 }
 
 td {
     padding: 10px;
-    border: 1px solid #e1f5fe;
+    border: 1px solid var(--color-border-light);
     text-align: center;
+    transition: background-color 0.2s ease;
 }
 
 tr:nth-child(even) td {
-    background-color: #f0f9ff;
+    background-color: var(--color-bg);
 }
 
 tr:hover td {
-    background-color: #b3e5fc;
+    background-color: var(--color-accent-light);
 }
 
 /* =========================================
@@ -137,16 +164,16 @@ select,
 textarea {
     padding: 8px 10px;
     font-size: 1rem;
-    border: 1px solid #81d4fa;
-    background-color: #ffffff;
-    color: #4a4a4a;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-white);
+    color: var(--color-text);
 }
 
 .form-input:focus,
 select:focus,
 textarea:focus {
-    border: 1px solid #0288d1;
-    background-color: #f0f9ff;
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-bg);
 }
 
 /*
@@ -156,14 +183,14 @@ textarea:focus {
     legend(그룹 제목)는 color/font-size로 강조해서 "여기부터 새로운 입력 그룹"임을 알려줌.
 */
 fieldset {
-    border: 2px solid #81d4fa;
+    border: 2px solid var(--color-border);
     padding: 16px 20px;
     margin: 16px 0;
-    background-color: #f8fdff;
+    background-color: var(--color-bg-soft);
 }
 
 legend {
-    color: #0288d1;
+    color: var(--color-primary);
     font-size: 1.1rem;
     padding: 0 8px;
 }
@@ -175,30 +202,30 @@ legend {
     :hover에서 색을 진하게/연하게 바꿔서 버튼 위에 마우스가 있음을 알려줌.
 */
 .btn-submit {
-    background-color: #0288d1;
-    color: #ffffff;
-    border: 1px solid #0288d1;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
     padding: 10px 24px;
     font-size: 1rem;
     margin: 10px 8px 10px 0;
 }
 
 .btn-submit:hover {
-    background-color: #01579b;
-    border: 1px solid #01579b;
+    background-color: var(--color-primary-dark);
+    border: 1px solid var(--color-primary-dark);
 }
 
 .btn-reset {
-    background-color: #ffffff;
-    color: #0288d1;
-    border: 1px solid #0288d1;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
     padding: 10px 24px;
     font-size: 1rem;
     margin: 10px 8px;
 }
 
 .btn-reset:hover {
-    background-color: #f0f9ff;
+    background-color: var(--color-bg);
 }
 
 /* =========================================
@@ -280,6 +307,38 @@ nav ul {
     height: auto;
 }
 
+/*
+    signUp.html 전용: 라벨+입력창 한 쌍으로 이루어진 <p class="form-row"> 행들을 Flexbox로 정렬함.
+    display: flex + align-items: center로 라벨과 입력창을 세로 가운데 기준으로 나란히 배치하고,
+    label에 flex: 0 0 110px(늘어나지도 줄어들지도 않는 고정 110px)를 줘서
+    "아이디:", "비밀번호:", "이메일:" 같은 라벨들의 폭이 전부 똑같이 맞춰지게 함
+    → 그 뒤에 오는 입력창들의 시작 위치가 세로로 가지런히 정렬되어 보임.
+*/
+.form-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.form-row label {
+    flex: 0 0 110px;
+    white-space: nowrap;
+}
+
+/*
+    myProfile.html 전용: 프로필 사진과 타이틀을 담은 header(.profile-header)를 Flexbox로 만듦.
+    flex-direction: column을 주면 자식 요소(h1, img)가 HTML에 쓴 순서 그대로 위→아래로 쌓임.
+    align-items: flex-start로 왼쪽 정렬을 줘서, 페이지의 나머지 본문(main, footer 등)과
+    같은 왼쪽 기준선에 맞춰지게 함(가운데 정렬하면 이 영역만 붕 떠 보이는 느낌이 들어서 제외).
+*/
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
 /* =========================================
    [미션5] 스마트폰에서 보기 (반응형 웹 디자인)
    ========================================= */
@@ -332,6 +391,29 @@ nav ul {
     .trip-grid-container {
         grid-template-columns: 1fr;
     }
+
+    /*
+        signUp.html 전용: 786px 이하에서는 .form-row를 flex-direction: column으로 바꿔
+        라벨이 입력창 위에 오도록 세로로 쌓음. 좁은 화면에서 라벨 폭을 110px로 고정해두면
+        입력창이 설 자리가 부족해지므로, flex-basis를 auto로 되돌려 라벨이 자기 글자 길이만큼만 차지하게 함.
+    */
+    .form-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .form-row label {
+        flex-basis: auto;
+    }
+
+    /*
+        myClass.html 전용: 시간표 table은 열이 많아서 화면이 좁아지면 억지로 욱여넣기보다
+        가로 스크롤로 보는 게 더 자연스러움. .table-scroll(table을 감싼 div)에 overflow-x: auto를 줘서
+        table 폭이 화면보다 넓어지면 그 부분만 좌우로 스크롤할 수 있게 함(레이아웃 자체는 안 깨짐).
+    */
+    .table-scroll {
+        overflow-x: auto;
+    }
 }
 
 /* =========================================
@@ -357,16 +439,31 @@ a {
     2) 여행 카드 호버 효과: 평소엔 은은한 그림자만 있다가, 마우스를 올리면(:hover)
     transform: translateY(-8px)로 카드를 위로 8px 띄우고, box-shadow를 더 크고 진하게 바꿔
     "카드가 화면 위로 떠오르는" 느낌을 줌. transition을 걸어두면 이 변화가 순간이동이 아니라
-    부드럽게 떠오르는 움직임으로 보임.
+    부드럽게 떠오르는 움직임으로 보임. 사진 카드(.trip-card)뿐 아니라 브이로그 카드(.video-card)에도
+    같은 효과를 줘서 "여행 앨범 카드"라는 느낌을 통일시킴.
 */
-.trip-card {
+.trip-card,
+.video-card {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.trip-card:hover {
+.trip-card:hover,
+.video-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 14px 24px rgba(0, 0, 0, 0.2);
+}
+
+/*
+    myProfile.html 전용: 프로필 사진에 마우스를 올리면 transform: scale(1.08)로 살짝(8%) 확대되게 함.
+    transition을 걸어 순간적으로 커지는 게 아니라 부드럽게 확대되는 느낌을 줌.
+*/
+.profile-header img {
+    transition: transform 0.25s ease;
+}
+
+.profile-header img:hover {
+    transform: scale(1.08);
 }
 
 /*
