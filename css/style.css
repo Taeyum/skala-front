@@ -279,3 +279,57 @@ nav ul {
     width: 100%;
     height: auto;
 }
+
+/* =========================================
+   [미션5] 스마트폰에서 보기 (반응형 웹 디자인)
+   ========================================= */
+
+/*
+    Media Query: 화면 폭이 786px 이하(스마트폰 등 좁은 화면)일 때만 안의 규칙들이 적용됨.
+    786px보다 넓은 화면(PC/태블릿)에서는 이 블록이 무시되고 원래(미션4) 스타일 그대로 유지됨.
+*/
+@media (max-width: 786px) {
+    /*
+        .container는 width: 800px으로 고정돼 있어서, 화면이 그보다 좁아지면 콘텐츠가 넘쳐
+        가로 스크롤이 생기고 레이아웃이 깨짐. 좁은 화면에서는 width: 100%로 바꿔
+        "화면 폭에 맞춰라"로 전환하고, box-sizing: border-box로 padding이 폭에 포함되게 해서
+        padding 때문에 다시 넘치지 않게 함. padding 자체도 살짝 줄여 여백 낭비를 줄임.
+    */
+    .container {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 16px;
+    }
+
+    /*
+        index.html 전용: 미션4에서 가로로 나란히 배치했던 바로가기 메뉴(nav ul)를
+        flex-direction: column으로 다시 세로 1열로 쌓음.
+    */
+    nav ul {
+        flex-direction: column;
+    }
+
+    /*
+        index.html 전용: main과 aside를 가로 2:1로 나눴던 .content-wrapper를
+        flex-direction: column으로 바꿔 위아래로 쌓이는 세로 1열 구조로 전환함.
+        main { flex: 2 }, aside { flex: 1 } 같은 비율 설정은 flex-direction: column에서는
+        가로 폭이 아니라 세로 높이 비율로 해석되어 버리므로, flex-basis를 auto로 되돌려
+        각자 내용물 높이만큼만 차지하게 함.
+    */
+    .content-wrapper {
+        flex-direction: column;
+    }
+
+    .content-wrapper main,
+    .content-wrapper aside {
+        flex: auto;
+    }
+
+    /*
+        myTrip.html 전용: 3열이었던 grid-template-columns를 1열로 바꿔서
+        카드가 위아래로 하나씩 쌓이게 함.
+    */
+    .trip-grid-container {
+        grid-template-columns: 1fr;
+    }
+}
