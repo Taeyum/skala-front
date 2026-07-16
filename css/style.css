@@ -491,3 +491,24 @@ a {
 .hero-title {
     animation: fadeInDown 0.8s ease-out forwards;
 }
+
+/* index.html 전용: 도시별 날씨(위경도) 조회 위젯. select 아래 여백을 주고, 결과 박스는 카드처럼 꾸밈 */
+.weather-widget {
+    margin-top: 16px;
+}
+
+#weather-box {
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+}
+
+#weather-box h4 {
+    margin: 0 0 6px;
+    color: var(--color-primary);
+}
+
+#weather-box p {
+    margin: 4px 0;
+}

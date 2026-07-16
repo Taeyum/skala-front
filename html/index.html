@@ -52,6 +52,28 @@
                 <h2> 실시간 정보</h2>
                 <p>현재 위치: 광주광역시 광산구 </p>
                 <p>추천 학습 사이트: <a href="ttps://www.w3schools.com" target="_blank">W3Schools</a></p>
+
+                <div class="weather-widget">
+                    <label for="city-select">🌤️ 날씨 조회 도시: </label>
+                    <select id="city-select">
+                        <optgroup label="국내">
+                            <option value="seoul">서울</option>
+                            <option value="busan">부산</option>
+                            <option value="gwangju">광주</option>
+                            <option value="incheon">인천</option>
+                            <option value="jeju">제주</option>
+                        </optgroup>
+                        <optgroup label="해외">
+                            <option value="tokyo">도쿄</option>
+                            <option value="newyork">뉴욕</option>
+                            <option value="paris">파리</option>
+                            <option value="london">런던</option>
+                            <option value="sydney">시드니</option>
+                        </optgroup>
+                    </select>
+
+                    <div id="weather-box"></div>
+                </div>
                 </aside>
 
                 <section class="mini-apps">
@@ -93,5 +115,6 @@
         <script src="../script/grade.js"></script>
         <script src="../script/bag.js"></script>
         <script src="../script/ticTacToe.js"></script>
+        <script src="../script/weather.js"></script>
     </body>
 </html>
