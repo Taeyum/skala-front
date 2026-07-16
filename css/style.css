@@ -333,3 +333,62 @@ nav ul {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================
+   [미션6] 생동감을 불어넣는 애니메이션
+   ========================================= */
+
+/*
+    1) 부드러운 색 전환: transition은 "어떤 속성이 바뀔 때 그 변화를 몇 초에 걸쳐 서서히 보여줄지"를 정함.
+    transition이 없으면 :hover로 색이 바뀌는 순간 색이 즉시(0초) 뚝 바뀌어 딱딱해 보임.
+    a(내비게이션 메뉴 링크 포함)는 color가, 버튼들은 background-color/color/border-color가
+    :hover 시점에 바뀌므로, 그 속성들에 transition을 걸어 부드럽게 바뀌게 함.
+*/
+a {
+    transition: color 0.2s ease;
+}
+
+.btn-submit,
+.btn-reset {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/*
+    2) 여행 카드 호버 효과: 평소엔 은은한 그림자만 있다가, 마우스를 올리면(:hover)
+    transform: translateY(-8px)로 카드를 위로 8px 띄우고, box-shadow를 더 크고 진하게 바꿔
+    "카드가 화면 위로 떠오르는" 느낌을 줌. transition을 걸어두면 이 변화가 순간이동이 아니라
+    부드럽게 떠오르는 움직임으로 보임.
+*/
+.trip-card {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.trip-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.2);
+}
+
+/*
+    3) index.html 등장 애니메이션: @keyframes로 "시간에 따라 스타일이 어떻게 변할지"를 미리 정의하고,
+    animation 속성으로 그 keyframes를 실제 요소에 적용함.
+    fadeInDown: 처음엔 투명(opacity: 0)하고 위로 12px 떠있다가(translateY(-12px)),
+    끝날 땐 완전히 보이고(opacity: 1) 제자리(translateY(0))로 내려오는 움직임.
+    .hero-title(index.html의 h1에만 붙인 클래스)에 이 keyframes를 0.8초 동안 재생해서
+    페이지가 열리자마자 타이틀이 부드럽게 나타나 보이게 함. forwards는 애니메이션이 끝난 뒤에도
+    마지막 상태(완전히 보이는 상태)를 그대로 유지하라는 뜻.
+*/
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-title {
+    animation: fadeInDown 0.8s ease-out forwards;
+}
