@@ -38,9 +38,9 @@
                     <section>
                         <h3>최근 공지 및 업데이트 사항</h3>
                         <article>
-                            <h4>[업데이트] 여행 앨범에 동영상 추가! 많은 관심 부탁드려요</h4>
-                            <p>목포에 있는 해상 케이블카의 기가막힌 절경!</p>
-                            <p>작성일: <time datetime="2026-07-15">2026년 7월 15일</time></p>
+                            <h4>[업데이트] 실시간 도시 위치 추가! 갤러그 게임 추가! </h4>
+                            <p>도시 위치도 확인하고 즐겁게 게임도 해봐요~~</p>
+                            <p>작성일: <time datetime="2026-07-16">2026년 7월 16일</time></p>
                         </article>
                     </section>
 
@@ -78,6 +78,11 @@
                     </select>
 
                     <div id="weather-box"></div>
+
+                    <div class="map-frame">
+                        <p class="map-title">📍 도시 위치</p>
+                        <iframe id="city-map" title="선택한 도시 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
                 </aside>
 
@@ -107,6 +112,12 @@
                         <p>나는 X, 컴퓨터는 O! 컴퓨터를 상대로 틱택토를 해보세요.</p>
                         <button type="button" class="btn-submit" onclick="playTicTacToe()">컴퓨터와 대결 시작</button>
                     </section>
+
+                    <section>
+                        <h3>👾 갤러그</h3>
+                        <p>방향키(← →) 또는 A/D로 이동, Space로 발사! 적을 모두 격추하면 승리해요.</p>
+                        <button type="button" class="btn-submit" onclick="startGalaga()">게임 시작</button>
+                    </section>
                 </section>
                 <hr>
 
@@ -115,11 +126,20 @@
                     <p><small>© 2026 은태현 포트폴리오. 모든 태그는 웹 표준 시맨틱 태그로 작성되었습니다.</small></p>
                 </footer>
             </div>
+
+            <!-- 갤러그 팝업: 평소엔 [hidden] 속성 때문에 화면에 안 보이다가, "게임 시작" 버튼을 누르면 JS가 이 속성을 떼서 화면에 나타남 -->
+            <div id="galaga-modal" class="game-modal" hidden>
+                <div class="game-modal-content">
+                    <button type="button" class="game-modal-close" onclick="closeGalaga()" aria-label="게임 닫기">✕</button>
+                    <canvas id="galaga-canvas" class="galaga-canvas" width="320" height="420">캔버스를 지원하지 않는 브라우저입니다.</canvas>
+                </div>
+            </div>
         </div>
         <script src="../script/upDown.js"></script>
         <script src="../script/grade.js"></script>
         <script src="../script/bag.js"></script>
         <script src="../script/ticTacToe.js"></script>
+        <script src="../script/galaga.js"></script>
         <script type="module" src="../script/realtimeInfo.js"></script>
         <script src="../script/themeToggle.js"></script>
     </body>

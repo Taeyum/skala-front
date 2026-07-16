@@ -15,9 +15,26 @@ var cityData = {
 
 var citySelect = document.getElementById("city-select");
 var weatherBox = document.getElementById("weather-box");
+var cityMap = document.getElementById("city-map");
+
+/*
+    선택한 도시의 위경도를 중심으로 지도 범위(bbox)를 계산해서 OpenStreetMap 임베드 주소를 만듦.
+    bbox는 "왼쪽,아래쪽,오른쪽,위쪽" 4개 경계값이라, lat/lon에서 delta만큼 상하좌우로 넓힌 사각형을 만들면 됨.
+    marker 파라미터로 그 위치에 핀도 하나 찍음. 카카오맵과 달리 API 키/개발자 등록이 필요 없음.
+*/
+function updateMap(lat, lon) {
+    var delta = 0.15;
+    var bbox = (lon - delta) + "," + (lat - delta) + "," + (lon + delta) + "," + (lat + delta);
+
+    cityMap.src =
+        "https://www.openstreetmap.org/export/embed.html?bbox=" + bbox +
+        "&layer=mapnik&marker=" + lat + "," + lon;
+}
 
 async function showCityInfo() {
     var selectedCity = cityData[citySelect.value];
+
+    updateMap(selectedCity.lat, selectedCity.lon);
 
     weatherBox.innerHTML =
         "<h4>" + selectedCity.name + "</h4>" +

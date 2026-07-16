@@ -1,5 +1,10 @@
-/* 구글 폰트 서버에서 Poor Story(손글씨 느낌 폰트)를 불러옴. @import는 파일 맨 위에 있어야 적용됨. */
+/*
+    구글 폰트 서버에서 폰트 2종을 불러옴. @import는 파일 맨 위에 있어야 적용됨.
+    Poor Story(손글씨 느낌)는 .hero-title 시그니처 타이틀 전용으로만 쓰고,
+    본문 전반은 가독성 좋은 Noto Sans KR로 통일함.
+*/
 @import url('https://fonts.googleapis.com/css2?family=Poor+Story&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
 
 /* =========================================
    [CSS Variables] 색상 팔레트
@@ -79,7 +84,7 @@
     line-height는 줄간격(font-size 배수) - 키우면 문단이 여유롭게, 줄이면 촘촘해짐.
 */
 body {
-    font-family: 'Poor Story', cursive;
+    font-family: 'Noto Sans KR', sans-serif;
     line-height: 1.7;
     color: var(--color-text);
     background-color: var(--color-bg);
@@ -103,6 +108,17 @@ h2 {
     font-size: 1.6rem;
     padding: 8px 0 8px 12px;
     border-left: 6px solid var(--color-secondary);
+}
+
+/*
+    hr: 지금까지 별도 규칙이 없어서 브라우저 기본 스타일(테두리 입체 음영 효과)에만 의존했음.
+    기본 스타일은 브라우저/줌 배율에 따라 두께나 색 톤이 미묘하게 달라 보일 수 있어서,
+    모든 페이지에서 완전히 똑같이 보이도록 border를 지우고 border-top 한 줄로 직접 그림.
+*/
+hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 20px 0;
 }
 
 /*
@@ -137,7 +153,8 @@ a:hover {
     margin: 0 auto;
     padding: 30px;
     background-color: var(--color-white);
-    border: 1px solid var(--color-accent-light);
+    border-radius: 20px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 12px 32px rgba(15, 23, 42, 0.06);
 }
 
 /*
@@ -211,6 +228,7 @@ textarea {
     background-color: var(--color-white);
     color: var(--color-text);
     max-width: 100%;
+    border-radius: 8px;
 }
 
 .form-input:focus,
@@ -231,6 +249,7 @@ fieldset {
     padding: 16px 20px;
     margin: 16px 0;
     background-color: var(--color-bg-soft);
+    border-radius: 12px;
 }
 
 legend {
@@ -252,6 +271,7 @@ legend {
     padding: 10px 24px;
     font-size: 1rem;
     margin: 10px 8px 10px 0;
+    border-radius: 10px;
 }
 
 .btn-submit:hover {
@@ -266,6 +286,7 @@ legend {
     padding: 10px 24px;
     font-size: 1rem;
     margin: 10px 8px;
+    border-radius: 10px;
 }
 
 .btn-reset:hover {
@@ -291,9 +312,14 @@ nav ul {
     padding: 0;
 }
 
-/* 지금 보고 있는 페이지의 nav 링크만 aria-current="page"가 붙어있어서, 이 링크를 다른 링크와 다르게 강조함 */
+/*
+    지금 보고 있는 페이지의 nav 링크만 aria-current="page"가 붙어있어서, 이 링크를 다르게 강조함.
+    font-weight: bold를 쓰면 글자 자체가 넓어져서(특히 한글 굵은 글씨는 폭 차이가 꽤 큼) 페이지마다
+    "어떤 링크가 굵어지는지"에 따라 nav 한 줄의 전체 폭이 달라지고, 그 폭이 넘치는 페이지에서만
+    마지막 링크가 다음 줄로 밀려나는 문제가 생겼음. 그래서 폭에 영향 없는 underline + color로만 강조함.
+*/
 nav a[aria-current="page"] {
-    font-weight: bold;
+    color: var(--color-primary-dark);
     text-decoration: underline;
 }
 
@@ -566,7 +592,57 @@ a {
 }
 
 .hero-title {
+    font-family: 'Poor Story', cursive;
     animation: fadeInDown 0.8s ease-out forwards;
+}
+
+/*
+    "이달의 베스트 사진" figure를 카드처럼 감쌈. figure 자체에 배경/패딩/그림자를 줘서 하나의 액자처럼 보이게 하고,
+    img는 width: 100%로 액자 폭에 꽉 차게 늘린 뒤(HTML의 width="300" 고정값을 덮어씀) border-radius로
+    사진 자체 모서리도 둥글림. figcaption은 사진 아래 캡션 위치를 가운데 정렬하고 살짝 연한 색으로 톤다운함.
+*/
+figure {
+    margin: 0;
+    padding: 12px;
+    background-color: var(--color-white);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 6px 16px rgba(15, 23, 42, 0.05);
+}
+
+figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+figcaption {
+    margin-top: 10px;
+    text-align: center;
+    color: var(--color-text);
+    opacity: 0.8;
+}
+
+/*
+    미니 프로그램 섹션을 Grid로 바꿔서 카드가 줄글로 쌓이는 대신 반응형 바둑판으로 배치되게 함.
+    auto-fit + minmax(220px, 1fr)는 "칸 하나가 최소 220px은 되게, 남는 공간만큼 칸 수를 자동으로 늘려라"는 뜻이라
+    화면 폭에 따라 카드가 몇 개씩 한 줄에 들어갈지 CSS가 알아서 정함.
+*/
+.mini-apps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.mini-apps h2 {
+    grid-column: 1 / -1;
+}
+
+.mini-apps section {
+    background-color: var(--color-white);
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 6px 16px rgba(15, 23, 42, 0.05);
+    padding: 18px;
 }
 
 /* index.html 전용: 도시별 날씨(위경도) 조회 위젯. select 아래 여백을 주고, 결과 박스는 카드처럼 꾸밈 */
@@ -577,8 +653,9 @@ a {
 #weather-box {
     margin-top: 10px;
     padding: 12px;
-    border: 1px solid var(--color-border);
     background-color: var(--color-bg);
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 6px 16px rgba(15, 23, 42, 0.05);
 }
 
 #weather-box h4 {
@@ -588,4 +665,96 @@ a {
 
 #weather-box p {
     margin: 4px 0;
+}
+
+/*
+    index.html 전용: 선택한 도시 위치를 보여주는 작은 지도(OpenStreetMap 임베드).
+    .map-frame에 overflow: hidden을 주면, 안에 있는 iframe이 사각형이어도 부모의 둥근 테두리 밖으로
+    삐져나오지 않고 부모 모양대로 잘려서 카드처럼 보임(iframe 자체엔 border-radius가 적용 안 되므로 이 트릭이 필요함).
+*/
+.map-frame {
+    margin-top: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/*
+    지도 위쪽에 얹히는 작은 타이틀 바. #weather-box h4(도시 이름)와 같은 색/굵기를 줘서
+    "같은 정보 블록"이라는 느낌으로 통일시킴.
+*/
+.map-title {
+    margin: 0;
+    padding: 8px 10px;
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    font-weight: bold;
+}
+
+#city-map {
+    display: block;
+    width: 100%;
+    height: 200px;
+    border: 0;
+}
+
+/*
+    index.html 전용: 갤러그 미니게임 캔버스. 캔버스 내부(어두운 우주 배경, 우주선, 총알, 적)는
+    script/galaga.js에서 ctx.fillRect 등으로 직접 그리므로, 여기서는 카드 안에서 캔버스가
+    붕 떠 보이지 않도록 가운데 정렬하고 기존 카드 톤에 맞는 테두리만 살짝 둘러줌.
+*/
+.galaga-canvas {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+}
+
+/*
+    갤러그를 화면 전체를 덮는 팝업으로 띄움. position: fixed + inset: 0으로 뷰포트 전체를 차지하는
+    반투명 검은 배경을 깔고, display: flex + center 정렬로 안의 카드를 항상 화면 정중앙에 둠.
+    [hidden] 속성이 있으면 브라우저가 자동으로 display: none 처리하므로, 평소엔 이 규칙 자체가 아예 안 먹힘.
+*/
+.game-modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/*
+    [hidden] 속성은 브라우저 기본 스타일로 display: none을 주는데, 그 기본 스타일은 우선순위가 낮아서
+    바로 위 .game-modal { display: flex; } 규칙에 그냥 덮어써져 버림(그래서 hidden이 붙어있어도 계속 보였음).
+    .game-modal[hidden]처럼 클래스+속성을 함께 쓰면 우선순위가 .game-modal 단독보다 높아져서
+    hidden일 때는 확실히 display: none이 이기게 됨.
+*/
+.game-modal[hidden] {
+    display: none;
+}
+
+.game-modal-content {
+    position: relative;
+    background-color: var(--color-white);
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.game-modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
 }
