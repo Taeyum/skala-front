@@ -274,9 +274,10 @@ nav ul {
     min-width: 0;
 }
 
-/* hr과 footer는 항상 자기 줄을 통째로 차지하게 해서 main/aside 아래로 자연스럽게 이어지게 함 */
+/* hr, footer, .mini-apps는 항상 자기 줄을 통째로 차지하게 해서 main/aside 아래로 자연스럽게 이어지게 함 */
 .content-wrapper hr,
-.content-wrapper footer {
+.content-wrapper footer,
+.content-wrapper .mini-apps {
     flex-basis: 100%;
 }
 
