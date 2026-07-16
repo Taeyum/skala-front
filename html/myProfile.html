@@ -2,11 +2,29 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>나의 프로필 페이지</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪐</text></svg>">
         <link rel="stylesheet" href="../css/style.css">
     </head>
     <body>
         <div class="container">
+            <nav>
+                <div class="nav-top">
+                    <h3>바로가기 메뉴</h3>
+                    <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="다크모드 전환">🌙</button>
+                </div>
+                <ul>
+                    <li><a href="index.html">🏠 홈</a></li>
+                    <li><a href="myClass.html">나의 수업 (Class)</a></li>
+                    <li><a href="myHoliday.html">나의 휴일 (Holiday)</a></li>
+                    <li><a href="myProfile.html" aria-current="page">나의 프로필 (Profile)</a></li>
+                    <li><a href="myTrip.html">나의 여행 (Album)</a></li>
+                    <li><a href="signUp.html">회원가입 (Sign Up)</a></li>
+                </ul>
+            </nav>
+            <hr>
+
             <!--
                 Q. header로 감싸지 않고 그냥 div/h1로 놔두면 무슨 문제가 있어서 바꾼거야?
                 A. div는 브라우저 입장에서 "의미 없는 그냥 상자"라 이 영역이 뭔지 알 수가 없음.
@@ -103,5 +121,6 @@
                 <p>&copy; 2026 은태현</p>
             </footer>
         </div>
+        <script src="../script/themeToggle.js"></script>
     </body>
 </html>

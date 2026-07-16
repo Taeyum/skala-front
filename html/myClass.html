@@ -2,19 +2,37 @@
 <html lang="ko">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>나의 강의 시간표</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪐</text></svg>">
         <link rel="stylesheet" href="../css/style.css">
     </head>
 
     <body>
         <div class="container">
+            <nav>
+                <div class="nav-top">
+                    <h3>바로가기 메뉴</h3>
+                    <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="다크모드 전환">🌙</button>
+                </div>
+                <ul>
+                    <li><a href="index.html">🏠 홈</a></li>
+                    <li><a href="myClass.html" aria-current="page">나의 수업 (Class)</a></li>
+                    <li><a href="myHoliday.html">나의 휴일 (Holiday)</a></li>
+                    <li><a href="myProfile.html">나의 프로필 (Profile)</a></li>
+                    <li><a href="myTrip.html">나의 여행 (Album)</a></li>
+                    <li><a href="signUp.html">회원가입 (Sign Up)</a></li>
+                </ul>
+            </nav>
+            <hr>
+
             <header>
                 <h1>나의 강의 시간표</h1>
 
                 <div class="table-scroll">
-                <table border="1" cellpadding="7" cellspacing="0">
+                <table>
                     <thead>
-                        <tr bgcloor="#eeeeee">
+                        <tr>
                             <th>시간</th>
                             <th>월요일</th>
                             <th>화요일</th>
@@ -42,7 +60,7 @@
                             <td>알고리즘 문제풀이 🧠</td>
                         </tr>
 
-                        <tr align="center" bgcolor="#f9f9f9">
+                        <tr>
                             <td>12:00 - 13:00</td>
                             <td colspan="5">🍱 점 심 시 간 🍱</td>
                         </tr>
@@ -77,6 +95,13 @@
                 </table>
                 </div>
             </header>
+
+            <hr>
+            <footer>
+                <p>이메일 문의 : unimokw@naver.com</p>
+                <p><small>© 2026 은태현 포트폴리오. 모든 태그는 웹 표준 시맨틱 태그로 작성되었습니다.</small></p>
+            </footer>
         </div>
+        <script src="../script/themeToggle.js"></script>
     </body>
 </html>
