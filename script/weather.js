@@ -14,14 +14,37 @@ var cityData = {
 var citySelect = document.getElementById("city-select");
 var weatherBox = document.getElementById("weather-box");
 
-function showCityInfo() {
+async function showCityInfo() {
     var selectedCity = cityData[citySelect.value];
 
     weatherBox.innerHTML =
         "<h4>" + selectedCity.name + "</h4>" +
-        "<p>위도: " + selectedCity.lat + "</p>" +
-        "<p>경도: " + selectedCity.lon + "</p>" +
-        "<p><small>(날씨 정보는 아직 연결 전이에요)</small></p>";
+        "<p>위도: " + selectedCity.lat + ", 경도: " + selectedCity.lon + "</p>" +
+        "<p>로딩 중... ⏳</p>";
+
+    var url =
+        "https://api.open-meteo.com/v1/forecast?latitude=" + selectedCity.lat +
+        "&longitude=" + selectedCity.lon +
+        "&current=temperature_2m,relative_humidity_2m";
+
+    try {
+        var response = await fetch(url);
+        var data = await response.json();
+
+        var temperature = data.current.temperature_2m;
+        var humidity = data.current.relative_humidity_2m;
+
+        weatherBox.innerHTML =
+            "<h4>" + selectedCity.name + "</h4>" +
+            "<p>위도: " + selectedCity.lat + ", 경도: " + selectedCity.lon + "</p>" +
+            "<p>🌡️ 온도: " + temperature + "°C</p>" +
+            "<p>💧 습도: " + humidity + "%</p>";
+    } catch (error) {
+        weatherBox.innerHTML =
+            "<h4>" + selectedCity.name + "</h4>" +
+            "<p>위도: " + selectedCity.lat + ", 경도: " + selectedCity.lon + "</p>" +
+            "<p>⚠️ 날씨 정보를 가져오지 못했어요.</p>";
+    }
 }
 
 citySelect.addEventListener("change", showCityInfo);
