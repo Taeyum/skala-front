@@ -1,3 +1,5 @@
+import { fetchWeather } from "./weatherAPI.js";
+
 var cityData = {
     seoul: { name: "서울", lat: 37.5665, lon: 126.9780 },
     busan: { name: "부산", lat: 35.1796, lon: 129.0756 },
@@ -22,23 +24,14 @@ async function showCityInfo() {
         "<p>위도: " + selectedCity.lat + ", 경도: " + selectedCity.lon + "</p>" +
         "<p>로딩 중... ⏳</p>";
 
-    var url =
-        "https://api.open-meteo.com/v1/forecast?latitude=" + selectedCity.lat +
-        "&longitude=" + selectedCity.lon +
-        "&current=temperature_2m,relative_humidity_2m";
-
     try {
-        var response = await fetch(url);
-        var data = await response.json();
-
-        var temperature = data.current.temperature_2m;
-        var humidity = data.current.relative_humidity_2m;
+        var weather = await fetchWeather(selectedCity.lat, selectedCity.lon);
 
         weatherBox.innerHTML =
             "<h4>" + selectedCity.name + "</h4>" +
             "<p>위도: " + selectedCity.lat + ", 경도: " + selectedCity.lon + "</p>" +
-            "<p>🌡️ 온도: " + temperature + "°C</p>" +
-            "<p>💧 습도: " + humidity + "%</p>";
+            "<p>🌡️ 온도: " + weather.temperature + "°C</p>" +
+            "<p>💧 습도: " + weather.humidity + "%</p>";
     } catch (error) {
         weatherBox.innerHTML =
             "<h4>" + selectedCity.name + "</h4>" +
