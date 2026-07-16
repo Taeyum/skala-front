@@ -167,6 +167,7 @@ textarea {
     border: 1px solid var(--color-border);
     background-color: var(--color-white);
     color: var(--color-text);
+    max-width: 100%;
 }
 
 .form-input:focus,
