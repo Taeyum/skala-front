@@ -32,6 +32,10 @@
     --color-accent-light: #b3e5fc;
     --color-error: #e53935;
     --color-success: #2e7d32;
+    --color-sun: #ffca28;
+    --color-cloud: #ffffff;
+    --color-surfer-suit: #fdd835;
+    --color-surfer-board: #e53935;
 }
 
 /*
@@ -61,6 +65,10 @@
         --color-accent-light: #2c4653;
         --color-error: #ef5350;
         --color-success: #66bb6a;
+        --color-sun: #c5cae9;
+        --color-cloud: #46586a;
+        --color-surfer-suit: #ffe082;
+        --color-surfer-board: #ff6b6b;
     }
 }
 
@@ -78,6 +86,10 @@
     --color-accent-light: #2c4653;
     --color-error: #ef5350;
     --color-success: #66bb6a;
+    --color-sun: #c5cae9;
+    --color-cloud: #46586a;
+    --color-surfer-suit: #ffe082;
+    --color-surfer-board: #ff6b6b;
 }
 
 /* =========================================
@@ -790,6 +802,21 @@ figcaption {
     padding: 24px;
     border-radius: 16px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/*
+    모든 페이지 뒤에 깔리는 도트 하늘+파도 배경(script/waveBackground.js가 body에 직접 삽입하는 캔버스).
+    position: fixed + inset: 0으로 뷰포트 전체를 고정 배경으로 덮어서(위쪽엔 해/구름, 아래쪽엔 파도)
+    스크롤해도 항상 같은 자리에 붙어있고, z-index: -1로 .container(카드)보다 뒤에 깔림. 카드가 불투명해서
+    카드 폭(800px) 바깥쪽 좌우 여백에서만 보이는 건 어쩔 수 없는 트레이드오프임(카드가 화면 중앙을 가리기 때문).
+*/
+#wave-background {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .game-modal-close {
