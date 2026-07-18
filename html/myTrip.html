@@ -12,7 +12,10 @@
         <nav>
             <div class="nav-top">
                 <h3>바로가기 메뉴</h3>
-                <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="다크모드 전환">🌙</button>
+                <div class="nav-top-right">
+                    <span id="auth-status" class="auth-status"></span>
+                    <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="다크모드 전환">🌙</button>
+                </div>
             </div>
             <ul>
                 <li><a href="index.html">🏠 홈</a></li>
@@ -21,6 +24,7 @@
                 <li><a href="myProfile.html">나의 프로필 (Profile)</a></li>
                 <li><a href="myTrip.html" aria-current="page">나의 여행 (Album)</a></li>
                 <li><a href="signUp.html">회원가입 (Sign Up)</a></li>
+                <li id="nav-login-item"><a href="login.html">🔑 로그인</a></li>
             </ul>
         </nav>
         <hr>
@@ -59,5 +63,6 @@
     </footer>
     </div>
     <script src="../script/themeToggle.js"></script>
+    <script src="../script/auth.js"></script>
 </body>
 </html>

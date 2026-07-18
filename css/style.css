@@ -30,6 +30,8 @@
     --color-border: #81d4fa;
     --color-border-light: #e1f5fe;
     --color-accent-light: #b3e5fc;
+    --color-error: #e53935;
+    --color-success: #2e7d32;
 }
 
 /*
@@ -57,6 +59,8 @@
         --color-border: #35505c;
         --color-border-light: #24333c;
         --color-accent-light: #2c4653;
+        --color-error: #ef5350;
+        --color-success: #66bb6a;
     }
 }
 
@@ -72,6 +76,8 @@
     --color-border: #35505c;
     --color-border-light: #24333c;
     --color-accent-light: #2c4653;
+    --color-error: #ef5350;
+    --color-success: #66bb6a;
 }
 
 /* =========================================
@@ -331,6 +337,48 @@ nav a[aria-current="page"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* nav-top 오른쪽 끝에 로그인 상태(#auth-status)와 다크모드 토글을 나란히 묶는 컨테이너 */
+.nav-top-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.auth-logout-btn {
+    background: none;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text);
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.auth-logout-btn:hover {
+    background-color: var(--color-bg);
+}
+
+/* signUp.html/login.html 공통: 입력 검증 실패 시 보여주는 에러 문구 */
+.form-error {
+    color: var(--color-error);
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* myPage.html 전용: 정보 저장 성공 시 보여주는 문구 */
+.form-success {
+    color: var(--color-success);
+    font-size: 0.9rem;
+    margin-top: 4px;
 }
 
 /*

@@ -12,7 +12,10 @@
             <nav>
                 <div class="nav-top">
                     <h3>바로가기 메뉴</h3>
-                    <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="다크모드 전환">🌙</button>
+                    <div class="nav-top-right">
+                        <span id="auth-status" class="auth-status"></span>
+                        <button type="button" id="theme-toggle" class="theme-toggle-btn" aria-label="다크모드 전환">🌙</button>
+                    </div>
                 </div>
                 <ul>
                     <li><a href="index.html">🏠 홈</a></li>
@@ -21,6 +24,7 @@
                     <li><a href="myProfile.html">나의 프로필 (Profile)</a></li>
                     <li><a href="myTrip.html">나의 여행 (Album)</a></li>
                     <li><a href="signUp.html" aria-current="page">회원가입 (Sign Up)</a></li>
+                    <li id="nav-login-item"><a href="login.html">🔑 로그인</a></li>
                 </ul>
             </nav>
             <hr>
@@ -43,7 +47,7 @@
                지금 이 폼은 비밀번호를 받으니까 실무라면 method="post"로 바꾸는 게 맞음
                (지금은 연습용이라 get이어도 동작엔 문제없음).
         -->
-        <form action="signUpResult.html" method="get">
+        <form id="signUpForm" action="signUpResult.html" method="get">
 
             <!--
                 fieldset: 관련된 입력 요소들을 하나의 그룹으로 묶는 태그. 브라우저 기본 스타일로 테두리 박스 생김
@@ -79,7 +83,7 @@
                     <label for="userEmail">이메일: </label>
                     <input type="text" id="userEmail" name="userEmail" class="form-input" placeholder="example" size="15">
                     @
-                    <select name="email">
+                    <select id="emailDomain" name="email">
                         <option value="direct">직접 입력</option>
                         <option value="naver.com">naver.com</option>
                         <option value="gmail.com">gmail.com</option>
@@ -193,5 +197,6 @@
         </footer>
         </div>
         <script src="../script/themeToggle.js"></script>
+        <script src="../script/auth.js"></script>
     </body>
 </html>

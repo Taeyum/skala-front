@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>나의 휴일 일과</title>
+        <title>로그인</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪐</text></svg>">
         <link rel="stylesheet" href="../css/style.css">
     </head>
@@ -20,37 +20,38 @@
                 <ul>
                     <li><a href="index.html">🏠 홈</a></li>
                     <li><a href="myClass.html">나의 수업 (Class)</a></li>
-                    <li><a href="myHoliday.html" aria-current="page">나의 휴일 (Holiday)</a></li>
+                    <li><a href="myHoliday.html">나의 휴일 (Holiday)</a></li>
                     <li><a href="myProfile.html">나의 프로필 (Profile)</a></li>
                     <li><a href="myTrip.html">나의 여행 (Album)</a></li>
                     <li><a href="signUp.html">회원가입 (Sign Up)</a></li>
-                    <li id="nav-login-item"><a href="login.html">🔑 로그인</a></li>
+                    <li id="nav-login-item"><a href="login.html" aria-current="page">🔑 로그인</a></li>
                 </ul>
             </nav>
             <hr>
 
-            <h1>나의 휴식 일과</h1>
-            <br>
+            <h1>🔑 로그인</h1>
+            <p>SKALA-FRONT에 오신 것을 환영합니다. 가입하신 아이디로 로그인해주세요.</p>
+            <hr>
 
-            <h2><u>오전 활동</u></h2>
-            <p><b>09:00</b> 늦잠 자는 행복</p>
-            <p><b>10:00</b> 여유 있게</p>
-            <p><b>11:00</b> 커피 한 잔</p>
-            <br>
+            <form id="loginForm">
+                <fieldset>
+                    <legend>로그인 정보</legend>
+                    <p class="form-row">
+                        <label for="loginId">아이디: </label>
+                        <input type="text" id="loginId" name="loginId" class="form-input" required placeholder="가입한 아이디를 입력해주세요.">
+                    </p>
+                    <p class="form-row">
+                        <label for="loginPw">비밀번호: </label>
+                        <input type="password" id="loginPw" name="loginPw" class="form-input" required placeholder="비밀번호를 입력해주세요.">
+                    </p>
+                </fieldset>
 
-            <h2><u>오후 활동</u></h2>
-            <p><b>13:00</b> 공원 산책</p>
-            <p><b>14:30</b> 사진 찍기</p>
-            <p><b>16:00</b> 충동 구매</p>
-            <br>
+                <p id="login-error" class="form-error" hidden>아이디 또는 비밀번호가 일치하지 않습니다.</p>
 
-            <h2><u>저녁 활동</u></h2>
-            <p><b>18:00</b> 맛있는 저녁 식사</p>
-            <p><b>19:30</b> 영화 감상</p>
-            <p><b>23:00</b> 짧은 독서</p>
-            <br>
-            
-            <p>야호</p>
+                <input type="submit" class="btn-submit" value="로그인">
+            </form>
+
+            <p>계정이 없으신가요? <a href="signUp.html">회원가입</a></p>
 
             <hr>
             <footer>
